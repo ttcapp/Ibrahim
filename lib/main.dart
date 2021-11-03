@@ -1,20 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ibrahim/profile.dart';
+import 'package:slide_drawer/slide_drawer.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+
 double conhight=100;
 double conwidht=100;
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
+  final navigatorkey= GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      navigatorKey: navigatorkey,
+      home: SlideDrawer(
+        backgroundColor: Colors.green.shade800,
+        items: [
+          MenuItem('Home',icon: Icons.account_balance,
+              onTap: (){}),
+          MenuItem('Project',icon: Icons.ac_unit_outlined,
+              onTap: (){}),
+          MenuItem('Favourite',icon: Icons.favorite,
+              onTap: (){}),
+          MenuItem('Profile',icon: Icons.account_circle_sharp,
+              onTap: (){
+            navigatorkey.currentState!
+                .push(MaterialPageRoute(builder:
+                (context)=>Profile()));
+              }),
+          MenuItem('Setting',icon: Icons.settings,
+              onTap: (){}),
+        ],
+        child: MyHomePage(),
+      ),
     );
   }
 }
@@ -30,7 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("FACEBOOK"),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          // call toggle from SlideDrawer to alternate between open and close
+          // when pressed menu button
+          onPressed: () => SlideDrawer.of(context)!.toggle(),
+        ),
+        title: Text("FACEBOOK")
       ),
       body: SingleChildScrollView(
         child: Column(
