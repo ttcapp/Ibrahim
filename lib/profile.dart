@@ -11,8 +11,14 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SingleChildScrollView(
+        child: Column (children: [
+
+        ],),
+      ),
       appBar: AppBar(
         title: Text("Profile Page"),
+
 
     ),
     );

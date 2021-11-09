@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ibrahim/log_in.dart';
 import 'package:ibrahim/profile.dart';
 import 'package:slide_drawer/slide_drawer.dart';
+
+
 
 void main() {
   runApp(MyApp());
@@ -65,6 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            ElevatedButton(
+                onPressed: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder:
+                      (context)=>Login()));
+                  },
+                child: Text("Log In")
+
+            ),
             InkWell(
              onTap: (){
                setState(() {
